@@ -1,0 +1,8 @@
+= form_for @user do |f|
+  %div
+  - unless @user.errors.empty?
+    %ul
+      - @user.errors.full_messages.each do |msg|
+        %li.error_msg
+          = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
+          %p= msg

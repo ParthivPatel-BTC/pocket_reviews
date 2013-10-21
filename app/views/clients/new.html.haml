@@ -1,0 +1,17 @@
+= provide(:title, "New Client")
+.container
+  .center.hero-uni
+    %h1.form-signin-heading Add New
+    = render "clients/error_new_messages"
+    .box
+      = form_for @client do |f|
+        = text_field_tag 'client[company_name]', nil, :placeholder => 'Company Name', class: "span7"
+        = text_field_tag 'client[representative]', nil, :placeholder => 'Representative', class: "span7"
+        = text_field_tag 'client[email]', nil, :placeholder => 'Email Address', class: "span7"
+        = text_field_tag 'client[url]', nil, :placeholder => 'Url', class: "span7"
+        = submit_tag "Add", class: "btn btn-large btn-primary pull-left"
+        = link_to "Cancel",clients_path,class: "btn btn-large btn-primary"
+:javascript
+{
+  $("#client_company_name").focus();
+}

@@ -1,0 +1,11 @@
+= provide(:title, "Edit Profile")
+.container
+  .span3
+    %h1.form-signin-heading Edit Client
+    = render "clients/error_new_messages"
+    = render "clients/edit_client"
+#hidden(style="display:none")
+  .control-group
+    .controls
+      = text_field(:client, :url, :name => "client[client_urls_attributes][replace_me][url]", :value => '', :placeholder => 'Url')
+      = image_tag('delete.png', name: "client[client_urls_attributes][deleteUrl][_destroy]", class: 'removeUrl')

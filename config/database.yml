@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: dev_pocket_reviews
+  host: localhost
+  pool: 5
+  username: postgres
+  password: postgres
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: test_pocket_reviews
+  host: localhost
+  pool: 5
+  username: postgres
+  password: postgres
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: prod_pocket_reviews
+  host: localhost
+  pool: 5
+  username: postgres
+  password: postgres

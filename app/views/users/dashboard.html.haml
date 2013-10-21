@@ -1,0 +1,13 @@
+- if current_user
+  Welcome,
+  %label
+  =current_user.first_name
+  |
+  =link_to("User List", users_path)
+  |
+  =link_to("Logout", logout_users_path)
+  |
+  =link_to("Change Password", change_password_users_path)
+- else
+  %label
+  =link_to("Sign in", login_users_path)

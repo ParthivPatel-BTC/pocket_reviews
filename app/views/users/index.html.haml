@@ -1,0 +1,29 @@
+= provide(:title , "Users")
+%div
+-flash.each do |name, msg|
+  .alert.alert-success
+    = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
+    = label_tag msg
+.center.hero-uni
+  %h1.form-signin-heading Users
+  .container
+    %table.table.table-striped
+      %tr
+        %th First Name
+        %th Last Name
+        %th Email
+        %th Edit
+        %th Delete
+      - @users.each do |user|
+        %tr
+          %td
+            = user.first_name.capitalize
+          %td
+            = user.last_name.capitalize
+          %td
+            = user.email
+          %td
+            = link_to("Edit", edit_user_registration_path)
+          %td
+            = link_to "Delete", method: :delete, data: { confirm: "Are you sure you wanted to delete this attr_reader :attr_namesecord?" }
+    = paginate @users

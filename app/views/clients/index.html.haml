@@ -1,0 +1,33 @@
+= provide(:title, "Clients")
+-flash.each do |name, msg|
+  .alert.alert-success
+    = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
+    =label_tag msg
+.center.hero-uni
+  %h1.form-signin-heading Clients
+  .container
+    .pull-right
+      .btn-group
+        = link_to "Add New", new_client_path, class: "btn btn-primary dropdown-toggle"
+        %br
+        %br
+    %table.table.table-striped
+      %tr
+        %th Company Name
+        %th Representative
+        %th Email
+        %th URL
+        %th Edit
+      - @clients.each do |client|
+        %tr
+          %td
+            = client.company_name.capitalize
+          %td
+            = client.representative.capitalize
+          %td
+            = client.email
+          %td
+            = client.url
+          %td
+            = link_to("Edit", edit_client_path(client.id))
+    = paginate @clients

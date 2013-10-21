@@ -1,0 +1,8 @@
+= form_tag @client do |c|
+  %div
+  - unless @client.errors.empty?
+    %ul
+      - @client.errors.full_messages.each do |msg|
+        %li.error_msg
+          = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
+          %p= msg

@@ -1,0 +1,17 @@
+.container
+  .center.hero-uni
+    %h1.form-signin-heading Forgot your password?
+    .box
+      = form_for resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post } do |f|
+        %div.pull-left
+          %ul
+            %li.error_msg
+              = link_to '', '', class: "close", :data => {"dismiss" => "alert"}
+              %p= devise_error_messages!
+        = f.label :email, class: "pull-left"
+        = f.email_field :email, :autofocus => true, class: "span7"
+        = f.submit "Send me reset password instructions", class: "btn btn-large btn-primary pull-left"
+        %br/
+        %br/
+        %br/
+      = render "devise/shared/links"

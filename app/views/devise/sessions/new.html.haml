@@ -1,0 +1,19 @@
+.container
+  .center.hero-uni
+    %h1.form-signin-heading Sign In
+    .box_signup
+      = form_for resource, :as => resource_name, :url => user_session_path do |f|
+        = f.label :email, class: "pull-left"
+        = f.email_field :email, :autofocus => true
+        = f.label :password, class: "pull-left"
+        = f.password_field :password
+        -if devise_mapping.rememberable?
+          = f.check_box :remember_me, class: "pull-left"
+          = f.label :remember_me, class: "pull-left"
+          %br/
+          %br/
+          %br/
+          = f.submit "Sign in", class: "btn btn-large btn-primary pull-left"
+          %br/
+          %br/
+      = render "devise/shared/links"

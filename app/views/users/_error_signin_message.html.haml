@@ -1,0 +1,5 @@
+- flash.each do |name, msg|
+  %ul.removeBullet
+    %li.error_msg
+      = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
+      = label_tag msg

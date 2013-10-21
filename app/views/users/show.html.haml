@@ -1,0 +1,28 @@
+= provide(:title, "Show")
+%div
+  - flash.each do |name, msg|
+    .alert.alert-error
+      = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
+      = label_tag msg
+.container
+  .span3
+    %h2.form-signin-heading User Detail
+    %table
+      %tr
+        %td
+          = label_tag 'First Name :-  '
+        %td
+          = @user.first_name
+      %tr
+        %td
+          = label_tag 'Last Name :-  '
+        %td
+          = @user.last_name
+      %tr
+        %td
+          = label_tag 'Email Address :-  '
+        %td
+          = @user.email
+      %tr
+        %td
+          = link_to "Back", login_users_path, class: "btn btn-large btn-primary"

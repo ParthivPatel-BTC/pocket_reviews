@@ -1,0 +1,22 @@
+= form_for @client, url: {action: "update"} do |f|
+  .control-group
+    %label.control-label{:for => "inputCompanyName", :type => "text"} Company Name
+    .controls
+      = f.text_field :company_name, :placeholder => 'Company Name'
+  .control-group
+    %label.control-label{:for => "representative", :type => "text"} Representative
+    .controls
+      = f.text_field :representative, :placeholder => 'Representative'
+  .control-group
+    %label.control-label{:for => "email", :type => "text"} Email
+    .controls
+      = f.text_field :email, :placeholder => 'Email'
+  .control-group#urlContainer
+    %label.control-label{:for => "url", :type => "text"} URL
+    = f.fields_for :client_urls do |builder|
+      = render "edit_urls", f: builder
+  %a#addNew{:href => "javascript:void(0)"} Add New
+  .control-group
+    .controls
+      = submit_tag "Update", class: "btn btn-large btn-primary"
+      = link_to "Cancel", clients_path, class: "btn btn-large btn-primary"
