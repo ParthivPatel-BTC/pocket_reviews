@@ -4,12 +4,13 @@
       Edit
       = resource_name.to_s.humanize
     .box
-      = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+      = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f|
         %div.pull-left
           %ul
             %li.error_msg
               = link_to '', '', class: "close", :data => {"dismiss" => "alert"}
               %p= devise_error_messages!
+        %div
           = f.label :email, class: "pull-left"
           = f.email_field :email, autofocus: "true", class: "span7"
 
@@ -24,12 +25,15 @@
           = f.label :current_password, class: "pull-left"
           %i (we need your current password to confirm your changes)
           = f.password_field :current_password, class: "span7"
+          = image_tag @user.avatar.url(:thumb), class: "pull-left"
+          %br
+          = file_field_tag 'user[avatar]'
         = f.submit "Update", class: "btn btn-large btn-primary pull-left"
         = link_to "Cancel", users_index_path, class: "btn btn-large btn-primary"
         %br/
         %br/
         %br/
     %h1.form-signin-heading
-      Cancel my account
+      Cancel My Account
     %p Unhappy?
     = button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class: "btn btn-large btn-primary"

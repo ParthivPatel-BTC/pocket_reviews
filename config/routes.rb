@@ -8,8 +8,10 @@ PocketReview::Application.routes.draw do
   resources :clients
   resources :sessions, only: [:new, :create, :destroy]
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "users/registrations"}
   match "users/index", to: 'users#index', via: "get"
+
+  resources :users
 
   #devise_scope :user do
   #  get "/login" => "devise/sessions#new"

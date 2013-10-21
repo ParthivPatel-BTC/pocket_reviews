@@ -18,10 +18,11 @@
         %th Email
         %th URL
         %th Edit
+        %th Delete
       - @clients.each do |client|
         %tr
           %td
-            = client.company_name.capitalize
+            = link_to(client.company_name.capitalize, edit_client_path(client.id))
           %td
             = client.representative.capitalize
           %td
@@ -30,4 +31,6 @@
             = client.url
           %td
             = link_to("Edit", edit_client_path(client.id))
+          %td
+            = link_to "Delete", client, method: :delete, data: { confirm: "Are you sure you wanted to delete this record?" }
     = paginate @clients

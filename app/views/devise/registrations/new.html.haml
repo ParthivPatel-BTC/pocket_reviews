@@ -2,7 +2,7 @@
   .center.hero-uni
     %h1.form-signin-heading Sign Up
     .box
-      = form_for @user, :as => resource_name, :url => registration_path(:user) do |f|
+      = form_for @user, :as => resource_name, :url => registration_path(:user), :html => {:multipart => true}  do |f|
         %div.pull-left
           %ul
             %li.error_msg
@@ -18,6 +18,7 @@
         = f.password_field :password, class: "span7"
         = f.label :password_confirmation, class: "pull-left"
         = f.password_field :password_confirmation, class: "span7"
+        = file_field_tag 'user[avatar]'
         = f.submit "Sign up", class: "btn btn-large btn-primary pull-left"
         %br/
         %br/

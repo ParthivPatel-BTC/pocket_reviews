@@ -1,5 +1,5 @@
 = form_tag @client do |c|
-  %div
+  %div.error_msg
   - unless @client.errors.empty?
     %ul
       - @client.errors.full_messages.each do |msg|
