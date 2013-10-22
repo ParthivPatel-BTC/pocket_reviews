@@ -1,3 +1,8 @@
+%div
+-flash.each do |name, msg|
+  .alert.alert-success
+    = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
+    = label_tag msg
 .container
   .center.hero-uni
     %h1.text-center Welcome to Pocket Review.

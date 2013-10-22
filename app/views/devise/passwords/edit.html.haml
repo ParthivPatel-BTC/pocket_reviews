@@ -1,0 +1,19 @@
+.container
+  .center.hero-uni
+    %h1.form-signin-heading Change Your Password
+    .box
+      = form_for @user, :url => update_password_users_path, :html => { :method => :post } do |f|
+        -flash.each do |name, msg|
+          %div.pull-left
+            %ul
+              %li.error_msg
+                = link_to '', '', class: "close", :data => {"dismiss" => "alert"}
+                %p= msg
+        %div
+          = f.label :password, "New password", class: "pull-left"
+          = f.password_field :password, :autofocus => true
+        %div
+          = f.label :password_confirmation, "Confirm new password", class: "pull-left"
+          = f.password_field :password_confirmation
+        %div
+          = f.submit "Update", class: "btn btn-large btn-primary pull-left"

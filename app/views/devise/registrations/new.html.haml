@@ -9,7 +9,7 @@
               = link_to '', '', class: "close", :data => {"dismiss" => "alert"}
               %p= devise_error_messages!
         = f.label :first_name, class: "pull-left"
-        = text_field_tag 'user[first_name]', nil, class: "span7",autofocus:  "true"
+        = text_field_tag 'user[first_name]', nil, class: "span7" ,autofocus:  "true"
         = f.label :last_name, class: "pull-left"
         = text_field_tag 'user[last_name]', nil, class: "span7"
         = f.label :email, class: "pull-left"

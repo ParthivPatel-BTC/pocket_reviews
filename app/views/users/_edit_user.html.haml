@@ -1,6 +1,9 @@
-= form_for @user do |f|
+= form_for @user, :html => {:multipart => true}  do |f|
   = f.text_field :first_name, :placeholder => 'First Name', class: "span7"
   = f.text_field :last_name, :placeholder => 'Last Name', class: "span7"
-  = f.text_field :email, :placeholder => 'Email', class: "span7"
+  = image_tag @user.avatar.url(:thumb)
+  %br/
+  %br/
+  = file_field_tag 'user[avatar]', class: "pull-left"
   = submit_tag "Update", class: "btn btn-large btn-primary"
   = link_to "Cancel",users_path,class: "btn btn-large btn-primary"
