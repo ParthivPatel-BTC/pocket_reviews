@@ -1,17 +1,52 @@
 = provide(:title, "New Client")
 .container
-  .center.hero-uni
-    %h1.form-signin-heading Add New
-    = render "clients/error_new_messages"
-    .box
-      = form_for @client do |f|
-        = text_field_tag 'client[company_name]', nil, :placeholder => 'Company Name', class: "span7"
-        = text_field_tag 'client[representative]', nil, :placeholder => 'Representative', class: "span7"
-        = text_field_tag 'client[email]', nil, :placeholder => 'Email Address', class: "span7"
-        = text_field_tag 'client[url]', nil, :placeholder => 'Url', class: "span7"
-        = submit_tag "Add", class: "btn btn-large btn-primary pull-left"
-        = link_to "Cancel",clients_path,class: "btn btn-large btn-primary"
-:javascript
-{
-  $("#client_company_name").focus();
-}
+  %h2.form-signin-heading Create Client
+  = render "clients/error_new_messages"
+  = form_for @client do |f|
+    = f.hidden_field :active, value: "true"
+    .span5
+      %div
+        = f.label :business_name
+        = f.text_field :business_name, autofocus: 'true'
+      %div
+        = f.label :contact_person
+        = f.text_field :contact_person
+      %div
+        = f.label :contact_number
+        = f.text_field :contact_number
+      %div
+        = f.label :address
+        = f.text_area :address, rows: '5'
+      %div
+        = f.label :company_representative
+        = f.text_field :company_representative
+      %div
+        = f.label :email_address
+        = f.text_field :email_address
+      %div
+        = f.label :directory_url
+      .control-group#urlContainer
+        = text_field(:client, :directory_url, :name => "client[client_urls_attributes][replace_me][directory_url]", :value => '')
+      %a#addNew{:href => "javascript:void(0)"} Add New
+      %br/
+      %div
+        = f.label :company_logo
+        = f.file_field :company_logo
+    .span4
+      %div
+        = f.label :sms_content
+        = f.text_area :sms_content, rows: '8'
+      %div
+        = f.label :thank_you_content
+        = f.text_area :thank_you_content, rows: '10'
+      %div
+        = f.label :twilio_number
+        = select_tag :twilio_number
+    = submit_tag "Add", class: "btn btn-primary"
+    = link_to "Cancel",clients_path,class: "btn btn-primary"
+
+#hidden(style="display:none")
+  .control-group
+    .controls
+      = text_field(:client, :directory_url, :name => "client[client_urls_attributes][replace_me][directory_url]", :value => '', :placeholder => 'Directory URL')
+      = image_tag('delete.png', name: "client[client_urls_attributes][deleteUrl][_destroy]", class: 'removeUrl')

@@ -3,6 +3,13 @@ $(document).ready(function(){
       removeUrl(this);
     });
 
+    client_main_url = $('.control-group').html();
+    current_time = new Date().getTime();
+    $("#client_directory_url").attr("name", "client[client_urls_attributes]["+current_time+"][directory_url]");
+
+    $('#user_first_name').keyup(function(){
+      });
+
     $("#addNew").click(function() {
       hiddenUrlContainer = $("#hidden").html();
       hiddenUrlContainer = hiddenUrlContainer.replace('replace_me', new Date().getTime()); //Replace name with current timestamp

@@ -11,24 +11,37 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131021094021) do
+ActiveRecord::Schema.define(:version => 20131023063344) do
 
   create_table "client_urls", :force => true do |t|
     t.integer  "client_id"
-    t.string   "url"
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "directory_url"
   end
 
   create_table "clients", :force => true do |t|
-    t.string   "company_name"
-    t.string   "representative"
-    t.string   "email"
-    t.string   "url"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.string   "business_name"
+    t.string   "contact_person"
+    t.string   "contact_number"
+    t.string   "address"
+    t.string   "company_representative"
+    t.string   "email_address"
+    t.integer  "user_id"
+    t.boolean  "active"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.string   "company_logo_file_name"
+    t.string   "company_logo_content_type"
+    t.integer  "company_logo_file_size"
+    t.datetime "company_logo_updated_at"
+    t.text     "sms_content"
+    t.text     "thank_you_content"
+    t.string   "twilio_number"
+    t.string   "business_name_slug"
   end
+
+  add_index "clients", ["user_id"], :name => "index_clients_on_user_id"
 
   create_table "sessions", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -50,7 +63,6 @@ ActiveRecord::Schema.define(:version => 20131021094021) do
     t.datetime "updated_at",                             :null => false
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "avtar"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"

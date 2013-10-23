@@ -3,7 +3,7 @@
     %h1.form-signin-heading
       Edit
       = resource_name.to_s.humanize
-    .box
+    .offset3.span6.box
       = form_for @user, :html => {:multipart => true} do |f|
         %div.pull-left
           %ul

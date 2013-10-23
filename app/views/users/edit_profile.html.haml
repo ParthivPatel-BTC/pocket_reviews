@@ -2,7 +2,7 @@
 .container
   .center.hero-uni
     %h1.form-signin-heading Edit Profile
-    .box
+    .offset3.span6.box
       = form_for @user, :html => {:multipart => true, :method => :post }  do |f|
         = f.text_field :first_name, :placeholder => 'First Name', class: "span7"
         = f.text_field :last_name, :placeholder => 'Last Name', class: "span7"

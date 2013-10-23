@@ -1,22 +1,42 @@
 = form_for @client, url: {action: "update"} do |f|
-  .control-group
-    %label.control-label{:for => "inputCompanyName", :type => "text"} Company Name
-    .controls
-      = f.text_field :company_name, :placeholder => 'Company Name'
-  .control-group
-    %label.control-label{:for => "representative", :type => "text"} Representative
-    .controls
-      = f.text_field :representative, :placeholder => 'Representative'
-  .control-group
-    %label.control-label{:for => "email", :type => "text"} Email
-    .controls
-      = f.text_field :email, :placeholder => 'Email'
-  .control-group#urlContainer
-    %label.control-label{:for => "url", :type => "text"} URL
-    = f.fields_for :client_urls do |builder|
-      = render "edit_urls", f: builder
-  %a#addNew{:href => "javascript:void(0)"} Add New
-  .control-group
-    .controls
-      = submit_tag "Update", class: "btn btn-large btn-primary"
-      = link_to "Cancel", clients_path, class: "btn btn-large btn-primary"
+  .span5
+    %div
+      = f.label :business_name
+      = f.text_field :business_name, autofocus: 'true', title: "Business Name"
+    %div
+      = f.label :contact_person
+      = f.text_field :contact_person, placeholder: 'Contact Person', title: "Contact Person"
+    %div
+      = f.label :contact_number
+      = f.text_field :contact_number, placeholder: 'Contact Number', title: "Contact Number"
+    %div
+      = f.label :contact_number
+      = f.text_area :address, placeholder: 'Address', rows: '5', title: "Address"
+    %div
+      = f.label :company_representative
+      = f.text_field :company_representative, placeholder: 'Company Representative', title: "Company Representative"
+    %div
+      = f.label :company_representative
+      = f.text_field :email_address, placeholder: 'Email Address', disabled: "disabled", title: "Email Address"
+    .control-group#urlContainer
+      = f.fields_for :client_urls do |builder|
+        = render "edit_urls", f: builder
+    %a#addNew{:href => "javascript:void(0)"} Add New
+    %br/
+    = image_tag @client.company_logo.url(:thumb)
+    %br/
+    %div
+      = f.label :company_logo
+      = f.file_field :company_logo, title: "Company Logo"
+  .span4
+    %div
+      = f.label :sms_content
+      = f.text_area :sms_content, placeholder: 'SMS Content', rows: '8', title: "Sms Content"
+    %div
+      = f.label :thank_you_content
+      = f.text_area :thank_you_content, placeholder: 'Thank you content', rows: '10', title: "Thank You Content"
+    %div
+      = f.label :twilio_number
+      = select_tag "client", :placeholder => "something"
+  = submit_tag "Upadate", class: "btn btn-primary"
+  = link_to "Cancel",clients_path,class: "btn btn-primary"

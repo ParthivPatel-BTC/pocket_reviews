@@ -6,10 +6,13 @@ PocketReview::Application.routes.draw do
 
   resources :static_pages
   resources :clients
+
+  put "clients/:id/active" => 'clients#active', as: :client_active
+  put "clients/:id/deactive" => 'clients#deactive', as: :client_deactive
   resources :sessions, only: [:new, :create, :destroy]
 
-  devise_for :users, :controllers => {:registrations => "users/registrations", :passwords => "passwords"}
-
+  #devise_for :users, :controllers => {:registrations => "users/registrations", :passwords => "passwords"}
+  devise_for :users
   match "users/index", to: 'users#index', via: "get"
 
   resources :users do
@@ -18,6 +21,10 @@ PocketReview::Application.routes.draw do
       post :update_password
     end
   end
+  resources :admins
+
+  get '/manage_clients' => 'clients#index', as: :manage_clients
+
   #devise_scope :user do
   #  get "/login" => "devise/sessions#new"
   #end

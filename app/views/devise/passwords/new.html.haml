@@ -1,7 +1,7 @@
 .container
   .center.hero-uni
     %h1.form-signin-heading Forgot your password?
-    .box
+    .offset3.span6.box
       = form_for resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post } do |f|
         %div.pull-left
           %ul
