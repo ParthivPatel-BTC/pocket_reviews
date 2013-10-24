@@ -5,20 +5,21 @@
       = f.text_field :business_name, autofocus: 'true', title: "Business Name"
     %div
       = f.label :contact_person
-      = f.text_field :contact_person, placeholder: 'Contact Person', title: "Contact Person"
+      = f.text_field :contact_person, title: "Contact Person"
     %div
       = f.label :contact_number
-      = f.text_field :contact_number, placeholder: 'Contact Number', title: "Contact Number"
+      = f.text_field :contact_number, title: "Contact Number"
     %div
       = f.label :contact_number
-      = f.text_area :address, placeholder: 'Address', rows: '5', title: "Address"
+      = f.text_area :address, rows: '5', title: "Address"
     %div
       = f.label :company_representative
-      = f.text_field :company_representative, placeholder: 'Company Representative', title: "Company Representative"
+      = f.text_field :company_representative, title: "Company Representative"
     %div
-      = f.label :company_representative
-      = f.text_field :email_address, placeholder: 'Email Address', disabled: "disabled", title: "Email Address"
+      = f.label :email_address
+      = f.text_field :email_address, disabled: "disabled", title: "Email Address"
     .control-group#urlContainer
+      = f.label :directory_url
       = f.fields_for :client_urls do |builder|
         = render "edit_urls", f: builder
     %a#addNew{:href => "javascript:void(0)"} Add New
@@ -31,12 +32,12 @@
   .span4
     %div
       = f.label :sms_content
-      = f.text_area :sms_content, placeholder: 'SMS Content', rows: '8', title: "Sms Content"
+      = f.text_area :sms_content, rows: '8', title: "Sms Content"
     %div
       = f.label :thank_you_content
-      = f.text_area :thank_you_content, placeholder: 'Thank you content', rows: '10', title: "Thank You Content"
+      = f.text_area :thank_you_content, rows: '10', title: "Thank You Content"
     %div
       = f.label :twilio_number
-      = select_tag "client", :placeholder => "something"
+      = select_tag "client"
   = submit_tag "Upadate", class: "btn btn-primary"
   = link_to "Cancel",clients_path,class: "btn btn-primary"
