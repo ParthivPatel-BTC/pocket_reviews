@@ -1,50 +1,52 @@
-.span10.offset1
-  %table.table.table-striped.table-bordered.table-hover.table-condensed
-    %tr
-      %td Business Name
-      %td
-        = @client.business_name
-    %tr
-      %td Contact Person
-      %td
-        = @client.contact_person
-    %tr
-      %td Contact Number
-      %td
-        = @client.contact_number
-    %tr
-      %td Address
-      %td
-        = @client.address
-    %tr
-      %td Company Representative
-      %td
-        = @client.company_representative
-    %tr
-      %td Email Address
-      %td
-        = @client.email_address
-    %tr
-      %td Directory URLs
-      %td
-        -@client_urls.each do |urls|
-          = link_to urls.directory_url, urls.directory_url
-    %tr
-      %td Company Logo
-      %td
-        = image_tag @client.company_logo.url(:thumb)
-    %tr
-      %td SMS Content
-      %td
-        = @client.sms_content
-    %tr
-      %td Thank You Content
-      %td
-        = @client.thank_you_content
-    %tr
-      %td Twilio Number
-      %td
-        = @client.twilio_number
-  .btn-group.pull-left
-    = link_to "Back", manage_clients_path, class: "btn btn-primary dropdown-toggle"
-    = link_to "Edit", edit_client_path(@client), class: "btn btn-primary dropdown-toggle btn_clients_table"
+.center.hero-uni
+  .container
+    .span10.offset1
+      %table.table.table-striped.table-bordered.table-hover.table-condensed
+        %tr
+          %td Business Name
+          %td
+            = @client.business_name
+        %tr
+          %td Contact Person
+          %td
+            = @client.contact_person
+        %tr
+          %td Contact Number
+          %td
+            = @client.contact_number
+        %tr
+          %td Address
+          %td
+            = @client.address
+        %tr
+          %td Company Representative
+          %td
+            = @client.company_representative
+        %tr
+          %td Email Address
+          %td
+            = @client.email_address
+        %tr
+          %td Directory URLs
+          %td
+            -@client_urls.each do |urls|
+              = link_to urls.directory_url, urls.directory_url
+        %tr
+          %td Company Logo
+          %td
+            = image_tag @client.company_logo.url(:thumb)
+        %tr
+          %td SMS Content
+          %td
+            = @client.sms_content
+        %tr
+          %td Thank You Content
+          %td
+            = @client.thank_you_content
+        %tr
+          %td Twilio Number
+          %td
+            = @client.twilio_number
+      .pull-left
+        = link_to "Back", manage_clients_path, class: "btn btn-primary"
+        = link_to "Edit", edit_client_path(@client), class: "btn btn-primary"

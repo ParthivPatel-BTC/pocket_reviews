@@ -1,8 +1,9 @@
-.container
+.container.pull-left
   .center.hero-uni
-    %h1.form-signin-heading Change Your Password
+    %h4 Change Your Password
     .offset3.span6.box
       = form_for @user, :url => update_password_users_path, :html => { :method => :post } do |f|
+        = hidden_field_tag 'id', client.id
         -flash.each do |name, msg|
           %div.pull-left
             %ul
@@ -18,6 +19,6 @@
         %div
           = f.label :password_confirmation, "Confirm Password", class: "pull-left"
           = f.password_field :password_confirmation
-        %div
-          = f.submit "Update", class: "btn btn-large btn-primary pull-left"
-          = link_to "Cancel", root_path, class: "btn btn-large btn-primary"
+        %div.pull-left
+          = f.submit "Update", class: "btn btn-primary"
+          = link_to "Cancel", manage_passwords_admins_path, class: "btn btn-primary"

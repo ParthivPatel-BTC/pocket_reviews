@@ -6,11 +6,11 @@
 .center.hero-uni
   %h1.form-signin-heading Clients
   .container
-    .btn-group.pull-left
-      = link_to "Add Client", new_client_path, class: "btn btn-primary dropdown-toggle pull-left"
-      = link_to "Manage Password", manage_passwords_admins_path, class: "btn btn-primary dropdown-toggle btn_clients_table"
-      %br
-      %br
+    .pull-left
+      = link_to "Add Client", new_client_path, class: "btn btn-primary"
+      = link_to "Manage Password", manage_passwords_admins_path, class: "btn btn-primary btn_clients_table"
+    %br
+    %br
     %table.table.table-striped.table-bordered.table-hover.table-condensed
       %tr
         %th Business Name

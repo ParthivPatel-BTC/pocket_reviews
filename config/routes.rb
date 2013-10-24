@@ -25,6 +25,8 @@ PocketReview::Application.routes.draw do
   resources :admins do
     collection do
       get :manage_passwords
+      post :reset_password
+      post :update_password
     end
   end
 
