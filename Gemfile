@@ -22,7 +22,7 @@ end
 group :development do
   gem 'sextant'
 end
-
+gem "rails_config", "~> 0.3.3"
 gem 'jquery-rails'
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS

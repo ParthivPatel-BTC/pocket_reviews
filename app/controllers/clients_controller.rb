@@ -8,6 +8,10 @@ class ClientsController < ApplicationController
     @client = Client.new(params[:client])
 
     if @client.save
+      client_user_email = @client.email_address
+      client_user_default_password = Settings.default_password
+
+      User.create(:email => client_user_email, :password => client_user_default_password, :username => client_user_email)
       flash[:notice] = "Record inserted successfully"
       redirect_to :clients
     else
@@ -32,6 +36,11 @@ class ClientsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def show
+    @client = Client.find(params[:id])
+    @client_urls = @client.client_urls
   end
 
   def destroy

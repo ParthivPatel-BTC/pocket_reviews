@@ -11,6 +11,11 @@ class Client < ActiveRecord::Base
     message: "address is invalid" }, unless: "email_address.blank?"
     has_attached_file :company_logo, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 
-  has_many :client_urls
+  belongs_to :user
+
+  has_many :reviews, dependent: :destroy
+  #has_many :review_invitations, dependent: :destroy
+
+  has_many :client_urls, dependent: :destroy
   accepts_nested_attributes_for :client_urls, :allow_destroy => true
 end

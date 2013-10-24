@@ -8,7 +8,7 @@
   .container
     .btn-group.pull-left
       = link_to "Add Client", new_client_path, class: "btn btn-primary dropdown-toggle pull-left"
-      = link_to "Manage Password", nil, class: "btn btn-primary dropdown-toggle btn_clients_table"
+      = link_to "Manage Password", manage_passwords_admins_path, class: "btn btn-primary dropdown-toggle btn_clients_table"
       %br
       %br
     %table.table.table-striped.table-bordered.table-hover.table-condensed
@@ -26,7 +26,7 @@
         - active_text = active ? 'Yes' : 'No'
         %tr
           %td
-            = link_to(client.business_name.capitalize, edit_client_path(client.id))
+            = link_to(client.business_name.capitalize, client_path(client.id))
           %td
             = client.contact_person.capitalize
           %td
@@ -42,13 +42,13 @@
             = link_to(client_path(client), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Delete') do
               %i.icon-remove
           - if active
-            %td<
+            %td
               = link_to(client_deactive_path(client), method: :put, data: { confirm: 'Are you sure?' }, title: 'De-activate') do
                 %i.icon-pause
           - unless active
-            %td<
+            %td
               = link_to(client_active_path(client), method: :put, data: { confirm: 'Are you sure?' }, title: 'Activate') do
                 %i.icon-play
     = paginate @clients
     .btn-group.pull-left
-      = link_to "Back", clients_path, class: "btn btn-primary"
+      = link_to "Back", admins_path, class: "btn btn-primary"

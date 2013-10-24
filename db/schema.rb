@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131023063344) do
+ActiveRecord::Schema.define(:version => 20131024055905) do
 
   create_table "client_urls", :force => true do |t|
     t.integer  "client_id"
@@ -43,7 +43,30 @@ ActiveRecord::Schema.define(:version => 20131023063344) do
 
   add_index "clients", ["user_id"], :name => "index_clients_on_user_id"
 
-  create_table "sessions", :force => true do |t|
+  create_table "reviews", :force => true do |t|
+    t.text     "comment"
+    t.integer  "rating"
+    t.datetime "submitted_on"
+    t.boolean  "posted_status"
+    t.datetime "posted_on"
+    t.integer  "client_id"
+    t.integer  "customer_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "reviews", ["client_id"], :name => "index_reviews_on_client_id"
+  add_index "reviews", ["customer_id"], :name => "index_reviews_on_customer_id"
+
+  create_table "roles", :force => true do |t|
+    t.string   "role_type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "user_roles", :force => true do |t|
+    t.integer  "role_id"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -67,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20131023063344) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "username"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
