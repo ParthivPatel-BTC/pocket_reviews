@@ -6,12 +6,12 @@ class ClientsController < ApplicationController
 
   def create
     @client = Client.new(params[:client])
-
     if @client.save
       client_user_email = @client.email_address
       client_user_default_password = Settings.default_password
 
       User.create(:email => client_user_email, :password => client_user_default_password, :username => client_user_email)
+      UserRole.create(:user_id => @client.id, :role_id => '2')
       flash[:notice] = "Record inserted successfully"
       redirect_to :clients
     else

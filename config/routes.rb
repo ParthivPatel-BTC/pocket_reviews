@@ -21,6 +21,7 @@ PocketReview::Application.routes.draw do
   match "users/index", to: 'users#index', via: "get"
   post "clients/update_password" => 'clients#update_password', as: :update_password
   get "clients/reset_password" => 'clients#reset_password', as: :reset_password
+  post "admins/update_password" => 'admins#update_password', as: :update_password
 
   resources :users do
     collection do
@@ -31,8 +32,7 @@ PocketReview::Application.routes.draw do
   resources :admins do
     collection do
       get :manage_passwords
-      post :reset_password
-      post :update_password
+      get :reset_password
     end
   end
 

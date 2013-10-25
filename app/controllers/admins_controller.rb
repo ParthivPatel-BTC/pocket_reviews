@@ -7,21 +7,19 @@ class AdminsController < ApplicationController
   end
 
   def reset_password
-    @user = User.find(params[:id])
-    render template: "devise/passwords/edit"
-    #logger.debug "*******************#{@edit_password.inspect}"
+    @admin = User.find(current_user)
   end
 
-  def update_password
-    @client_password = User.find(params[:id])
+  def update
+    @client_password = User.find(current_user.id)
     chk_both_password = check_both_password?(params[:user][:password], params[:user][:password_confirmation])
     if chk_both_password.first
-      current_user.update_attribute(:password, params[:user][:password])
+      @client_password.update_attribute(:password, params[:user][:password])
       flash[:notice] = 'Password updated successfully.'
       redirect_to :root
     else
       flash[:notice] = chk_both_password.last
-      redirect_to :changepassword_users
+      redirect_to :reset_password_admins
     end
   end
 

@@ -29,7 +29,6 @@ class UsersController < ApplicationController
   end
 
   def update_password
-    puts "******************************#{params.inspect}"
       @user = User.find(params[:id])
       chk_both_password = check_both_password?(params[:user][:password], params[:user][:password_confirmation])
       if chk_both_password.first

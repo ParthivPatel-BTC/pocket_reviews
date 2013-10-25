@@ -18,7 +18,7 @@
             %li
               = link_to("Manage Clients", manage_clients_path)
             %li
-              = link_to("Change Password", changepassword_users_path)
+              = link_to("Change Password", reset_password_admins_path)
             %li
               = link_to("Logout", destroy_user_session_path, :method => :delete)
           - else
