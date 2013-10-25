@@ -1,11 +1,10 @@
 class AdminsController < ApplicationController
   def index
     @clients = Client.all
-    logger.debug"********************#{@clients.inspect}"
   end
 
   def manage_passwords
-    @clients_passwords = User.all
+    @clients_passwords = User.order("username").page(params[:page]).per(5)
   end
 
   def reset_password
@@ -18,7 +17,7 @@ class AdminsController < ApplicationController
     if chk_both_password.first
       @client_password.update_attribute(:password, params[:user][:password])
       flash[:notice] = 'Password updated successfully.'
-      redirect_to :root
+      redirect_to :manage_passwords_admins
     else
       flash[:notice] = chk_both_password.last
       redirect_to :reset_password_admins

@@ -1,54 +1,55 @@
-= provide(:title, "Clients")
--flash.each do |name, msg|
-  .alert.alert-success
-    = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
-    =label_tag msg
 .center.hero-uni
-  %h1.form-signin-heading Clients
   .container
-    .pull-left
-      = link_to "Add Client", new_client_path, class: "btn btn-primary"
-      = link_to "Manage Password", manage_passwords_admins_path, class: "btn btn-primary btn_clients_table"
-    %br
-    %br
-    %table.table.table-striped.table-bordered.table-hover.table-condensed
-      %tr
-        %th Business Name
-        %th Contact Person
-        %th Company Representative
-        %th Active
-        %th Added On
-        %th
-        %th
-        %th
-      - @clients.each do |client|
-        - active = client.active
-        - active_text = active ? 'Yes' : 'No'
+    .span10offset1
+    %h4.pull Clients
+    -flash.each do |name, msg|
+      .alert.alert-success
+        = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
+        =label_tag msg
+    .container
+      .pull-left
+        = link_to "Add Client", new_client_path, class: "btn btn-primary"
+        = link_to "Manage Password", manage_passwords_admins_path, class: "btn btn-primary btn_clients_table"
+      %br
+      %br
+      %table.table.table-striped.table-bordered.table-hover.table-condensed
         %tr
-          %td
-            = link_to(client.business_name.capitalize, client_path(client.id))
-          %td
-            = client.contact_person.capitalize
-          %td
-            = client.company_representative.capitalize
-          %td
-            = active_text
-          %td
-            = client.created_at.strftime("%d %b %y")
-          %td
-            = link_to(edit_client_path(client), title: 'Edit') do
-              %i.icon-edit
-          %td
-            = link_to(client_path(client), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Delete') do
-              %i.icon-remove
-          - if active
+          %th Business Name
+          %th Contact Person
+          %th Company Representative
+          %th Active
+          %th Added On
+          %th
+          %th
+          %th
+        - @clients.each do |client|
+          - active = client.active
+          - active_text = active ? 'Yes' : 'No'
+          %tr
             %td
-              = link_to(client_deactive_path(client), method: :put, data: { confirm: 'Are you sure?' }, title: 'De-activate') do
-                %i.icon-pause
-          - unless active
+              = link_to(client.business_name.capitalize, client_path(client.id))
             %td
-              = link_to(client_active_path(client), method: :put, data: { confirm: 'Are you sure?' }, title: 'Activate') do
-                %i.icon-play
-    = paginate @clients
-    .btn-group.pull-left
-      = link_to "Back", admins_path, class: "btn btn-primary"
+              = client.contact_person.capitalize
+            %td
+              = client.company_representative.capitalize
+            %td
+              = active_text
+            %td
+              = client.created_at.strftime("%d %b %y")
+            %td
+              = link_to(edit_client_path(client), title: 'Edit') do
+                %i.icon-edit
+            %td
+              = link_to(client_path(client), method: :delete, data: { confirm: 'Are you sure?' }, title: 'Delete') do
+                %i.icon-remove
+            - if active
+              %td
+                = link_to(client_deactive_path(client), method: :put, data: { confirm: 'Are you sure?' }, title: 'De-activate') do
+                  %i.icon-pause
+            - unless active
+              %td
+                = link_to(client_active_path(client), method: :put, data: { confirm: 'Are you sure?' }, title: 'Activate') do
+                  %i.icon-play
+      = paginate @clients
+      .btn-group.pull-left
+        = link_to "Back", admins_path, class: "btn btn-primary"

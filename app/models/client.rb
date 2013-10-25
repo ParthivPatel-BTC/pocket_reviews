@@ -2,6 +2,7 @@ class Client < ActiveRecord::Base
   attr_accessible :business_name, :contact_person, :contact_number, :address, :company_representative,
                   :email_address, :sms_content, :thank_you_content, :company_logo, :directory_url, :active
 
+
   attr_accessible :client_urls_attributes
 
   validates_presence_of :business_name, :contact_person, :contact_number, :company_representative,
