@@ -9,3 +9,10 @@
       .span12
         %h3.text-center
           = @client.business_name.capitalize
+        .control-group
+          .controls
+            = text_field_tag 'review_invitation[phone_number]', nil, class: "span7", autofocus:  "true",placeholder: "Customer phone number"
+            = hidden_field_tag 'review_invitation_client_id'
+        .control-group
+          .controls
+            = submit_tag "Send", class: "btn btn-primary sendReviewInvitationBtn"
