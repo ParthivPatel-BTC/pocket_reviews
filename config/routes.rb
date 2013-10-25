@@ -36,6 +36,7 @@ PocketReview::Application.routes.draw do
     end
   end
 
+  post '/clients/dashboard' => 'clients#dashboard', as: :client_dashboard
   get '/manage_clients' => 'clients#index', as: :manage_clients
 
   #devise_scope :user do

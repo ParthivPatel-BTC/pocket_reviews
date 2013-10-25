@@ -1,3 +1,12 @@
 .container
-  .center.hero-uni
-    %h1.form-signin-heading Welcome
+  %h1
+  .span10.offset1
+    = form_for @clients, :url => {} do |f|
+      %table
+        %tr
+          %td
+            = label_tag 'client', 'Clients', class: 'pull-left'
+          %td
+            = f.collection_select :id, Client.order(:business_name),:id,:business_name, include_blank: false, class: 'pull-left'
+          %td
+            = f.submit "Load Reviews", class: "btn btn-primary"

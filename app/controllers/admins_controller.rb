@@ -1,5 +1,7 @@
 class AdminsController < ApplicationController
   def index
+    @clients = Client.all
+    logger.debug"********************#{@clients.inspect}"
   end
 
   def manage_passwords

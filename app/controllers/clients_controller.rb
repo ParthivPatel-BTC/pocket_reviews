@@ -1,5 +1,9 @@
 class ClientsController < ApplicationController
 
+  def dashboard
+
+  end
+
   def new
     @client  = Client.new
   end
@@ -9,9 +13,10 @@ class ClientsController < ApplicationController
     if @client.save
       client_user_email = @client.email_address
       client_user_default_password = Settings.default_password
-
       User.create(:email => client_user_email, :password => client_user_default_password, :username => client_user_email)
-      UserRole.create(:user_id => @client.id, :role_id => '2')
+
+      user_id_for_role = User.find_by_email(@client.email_address)
+      UserRole.create(:user_id => user_id_for_role.id, :role_id => '2')
       flash[:notice] = "Record inserted successfully"
       redirect_to :clients
     else
