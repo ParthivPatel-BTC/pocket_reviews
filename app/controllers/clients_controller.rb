@@ -38,6 +38,24 @@ class ClientsController < ApplicationController
     end
   end
 
+  def reset_password
+    @user = User.find(params[:id])
+    render template: "devise/passwords/edit"
+  end
+
+  def update_password
+      @user = User.find(params[:id])
+      chk_both_password = check_both_password?(params[:user][:password], params[:user][:password_confirmation])
+      if chk_both_password.first
+        @user.update_attribute(:password, params[:user][:password])
+        flash[:notice] = 'Password changed successfully.'
+        redirect_to :manage_passwords_admins
+      else
+        flash[:notice] = chk_both_password.last
+        render template: "devise/passwords/edit"
+      end
+  end
+
   def show
     @client = Client.find(params[:id])
     @client_urls = @client.client_urls
@@ -76,5 +94,5 @@ def update_client_status_and_redirect(client_status)
     flash[:notice] = "Record updates successfully"
     redirect_to :clients
   end
-
 end
+

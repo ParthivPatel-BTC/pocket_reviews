@@ -5,7 +5,11 @@ PocketReview::Application.routes.draw do
   root to: "static_pages#welcome"
 
   resources :static_pages
-  resources :clients
+  resources :clients do
+    collection do
+      post :reset_password
+    end
+  end
 
   put "clients/:id/active" => 'clients#active', as: :client_active
   put "clients/:id/deactive" => 'clients#deactive', as: :client_deactive
@@ -15,6 +19,8 @@ PocketReview::Application.routes.draw do
   #devise_for :users, :controllers => {:registrations => "users/registrations", :passwords => "passwords"}
   devise_for :users
   match "users/index", to: 'users#index', via: "get"
+  post "clients/update_password" => 'clients#update_password', as: :update_password
+  get "clients/reset_password" => 'clients#reset_password', as: :reset_password
 
   resources :users do
     collection do

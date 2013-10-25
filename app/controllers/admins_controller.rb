@@ -7,11 +7,12 @@ class AdminsController < ApplicationController
   end
 
   def reset_password
-    @edit_password = User.find(params[:id])
+    @user = User.find(params[:id])
+    render template: "devise/passwords/edit"
     #logger.debug "*******************#{@edit_password.inspect}"
   end
 
-  def update
+  def update_password
     @client_password = User.find(params[:id])
     chk_both_password = check_both_password?(params[:user][:password], params[:user][:password_confirmation])
     if chk_both_password.first

@@ -29,6 +29,7 @@ class UsersController < ApplicationController
   end
 
   def update_password
+    puts "******************************#{params.inspect}"
       @user = User.find(params[:id])
       chk_both_password = check_both_password?(params[:user][:password], params[:user][:password_confirmation])
       if chk_both_password.first
@@ -37,7 +38,7 @@ class UsersController < ApplicationController
         redirect_to :manage_passwords_admins_path
       else
         flash[:notice] = chk_both_password.last
-        redirect_to :changepassword_users
+        redirect_to :reset_password
       end
   end
 
