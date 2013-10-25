@@ -1,12 +1,16 @@
 .container
-  %h1
-  .span10.offset1
+  .span10offset1.center.hero-uni
+    -flash.each do |name, msg|
+      .alert.alert-success
+        = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
+        = label_tag msg
     = form_for @clients, :url => {} do |f|
-      %table
-        %tr
-          %td
-            = label_tag 'client', 'Clients', class: 'pull-left'
-          %td
-            = f.collection_select :id, Client.order(:business_name),:id,:business_name, include_blank: false, class: 'pull-left'
-          %td
-            = f.submit "Load Reviews", class: "btn btn-primary"
+      .container
+        %table
+          %tr
+            %td
+              = label_tag 'client', 'Clients', class: 'pull-left'
+            %td
+              = f.collection_select :id, Client.order(:business_name),:id,:business_name, include_blank: false, class: 'pull-left'
+            %td
+              = f.submit "Load Reviews", class: "btn btn-primary"

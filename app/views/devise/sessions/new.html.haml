@@ -1,6 +1,10 @@
 .container
   .center.hero-uni
     %h1.form-signin-heading Sign In
+    -flash.each do |name, msg|
+      .alert.error_msg.pull-right
+        = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
+        =label_tag msg
     .box_signup
       = form_for resource, :as => resource_name, :url => user_session_path do |f|
         = f.label :email, class: "pull-left"

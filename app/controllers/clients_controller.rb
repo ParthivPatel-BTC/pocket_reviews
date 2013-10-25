@@ -1,7 +1,8 @@
 class ClientsController < ApplicationController
 
   def dashboard
-
+    client_user_record = User.find(current_user.id)
+    @client = Client.find_by_email_address(client_user_record.email)
   end
 
   def new

@@ -1,0 +1,11 @@
+.center.hero-uni
+  .container
+    %h1.form-signin-heading Dashboard
+    -flash.each do |name, msg|
+      .alert.alert-success
+        = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
+        =label_tag msg
+    .span10offset1
+      .span12
+        %h3.text-center
+          = @client.business_name.capitalize

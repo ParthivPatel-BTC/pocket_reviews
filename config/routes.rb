@@ -33,10 +33,11 @@ PocketReview::Application.routes.draw do
     collection do
       get :manage_passwords
       get :reset_password
+      post :update_password
     end
   end
 
-  post '/clients/dashboard' => 'clients#dashboard', as: :client_dashboard
+  get '/dashboard' => 'clients#dashboard', as: :client_dashboard
   get '/manage_clients' => 'clients#index', as: :manage_clients
 
   #devise_scope :user do

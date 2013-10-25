@@ -1,11 +1,11 @@
-%div
--flash.each do |name, msg|
-  .alert.alert-success
-    = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
-    = label_tag msg
 .container
-  .center.hero-uni
-    %h1.text-center Welcome To Pocket Review.
-    %br/
-    .row-fluid.text-center
-      = link_to "Sign In", new_user_session_path, class: "btn btn-primary"
+  .span10offset1
+    -flash.each do |name, msg|
+      .alert.alert-success
+        = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
+        = label_tag msg
+    .container
+      %h1.text-center Welcome To Pocket Review.
+      %br/
+      .row-fluid.text-center
+        = link_to "Sign In", new_user_session_path, class: "btn btn-primary"
