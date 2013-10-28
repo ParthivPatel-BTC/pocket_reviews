@@ -89,8 +89,8 @@ class ClientsController < ApplicationController
     @client_reviews = Review.find_by_client_id(params[:client_id])
     @client_urls = ClientUrl.find_all_by_client_id(params[:client_id])
 
-    data = ClientUrl.joins(:review)
-    logger.debug "***************#{data.inspect}"
+    #data = ClientUrl.joins(:review)
+    #logger.debug "***************#{data.inspect}"
 
      respond_to { |format|
         format.js {
