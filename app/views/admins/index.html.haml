@@ -4,13 +4,15 @@
       .alert.alert-success
         = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
         = label_tag msg
-    = form_for @clients, :url => {} do |f|
+    = form_tag(load_reviews_clients_path, method: :post, remote: true) do |f|
       .container
         %table
           %tr
             %td
               = label_tag 'client', 'Clients', class: 'pull-left'
             %td
-              = f.collection_select :id, Client.order(:business_name),:id,:business_name, include_blank: false, class: 'pull-left'
+              = select_tag :client_id, options_from_collection_for_select(@clients, 'id', 'business_name', @selected_client_id)
             %td
-              = f.submit "Load Reviews", class: "btn btn-primary"
+              = submit_tag "Load Reviews", class: "btn btn-primary", id: "load_review", type: "submit"
+
+  .load_reviews

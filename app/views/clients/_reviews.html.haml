@@ -1,0 +1,14 @@
+.load_reviews
+  %table.table.table-striped.table-bordered.table-hover.table-condensed
+    %h4
+      = link_to "Dashboard"
+    %thead
+      %tr
+        %th Directory URL
+        %th Posted [30 days]
+        %th Visible [30 days]
+    %tbody
+      - if @client_urls.present?
+        = render partial: 'clients/review_listing'
+      - else
+        = render partial: 'clients/no_review_found'

@@ -8,6 +8,7 @@ PocketReview::Application.routes.draw do
   resources :clients do
     collection do
       post :reset_password
+      post :load_reviews
     end
   end
 

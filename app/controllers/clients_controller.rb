@@ -82,6 +82,22 @@ class ClientsController < ApplicationController
   def deactive
     update_client_status_and_redirect(:deactive)
   end
+
+  def load_reviews
+    client_data = Client.find(params[:client_id])
+    @client_business_name = client_data.business_name
+    @client_reviews = Review.find_by_client_id(params[:client_id])
+    @client_urls = ClientUrl.find_all_by_client_id(params[:client_id])
+
+    data = ClientUrl.joins(:review)
+    logger.debug "***************#{data.inspect}"
+
+     respond_to { |format|
+        format.js {
+          render file: 'clients/load_reviews'
+        }
+      }
+  end
 end
 
 private

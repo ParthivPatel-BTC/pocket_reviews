@@ -19,6 +19,21 @@ $(document).ready(function(){
         removeUrl(this);
       });
     });
+
+  /*$("#load_review").click(function() {
+    var id = $('#client_id').val();
+    alert(id);
+    $.ajax({
+        url: "/clients/load_reviews",
+        type:"POST",
+        data:{client_id: id},
+        success:function(data){
+            $('#AdsDiv').html(data);
+        }
+      });
+    });
+  */
+
 });
 
 function removeUrl(dom) {

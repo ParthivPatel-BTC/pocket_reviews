@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   #helper_method :current_user
    #before_filter :configure_permitted_parameters, if: :devise_controller?
   def after_sign_in_path_for(resource)
-    #logger.debug"******************"
     @user = current_user
     @user_role = UserRole.find_by_user_id(@user.id)
 
