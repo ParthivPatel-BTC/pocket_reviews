@@ -6,24 +6,19 @@
         %span.icon-bar
         %span.icon-bar
       = link_to "Pocket Review", nil, class: "brand", id: "logo"
-      .nav-collapse.collapse.navbar-inverse-collapse
-        %ul.nav
-          - if user_signed_in?
-            %li
-          /    = link_to("Users", users_index_path)
-          %li
-          /  = link_to("About", about_us_path)
-        %form.nav.pull-right
-          - if user_signed_in?
-            %li
-              = link_to("Manage Clients", manage_clients_path)
-            %li
-              = link_to("Change Password", reset_password_admins_path)
-            %li
-              = link_to("Logout", destroy_user_session_path, :method => :delete)
-          - else
-            %li
-              //= link_to("Sign Up", sign_up_users_path)
-            %li.divider-vertical
-            %li
-              /#= link_to("Sign In", user_session_path)
+      - if is_current_user?
+        .nav-collapse.collapse.navbar-inverse-collapse
+          %ul.nav.pull-right
+            - if is_user?
+              %li
+                = link_to("Change Password", reset_password_admins_path)
+              %li
+                = link_to("Logout", destroy_user_session_path, :method => :delete)
+            - else
+              %form.nav.pull-right
+                %li
+                  = link_to("Manage Clients", manage_clients_path)
+                %li
+                  = link_to("Change Password", reset_password_admins_path)
+                %li
+                  = link_to("Logout", destroy_user_session_path, :method => :delete)
