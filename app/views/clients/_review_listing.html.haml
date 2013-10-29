@@ -1,6 +1,8 @@
-- @client_urls.each do |urls|
+- @client_reviews_by_id.each do |urls|
   %tr
     %td
       = urls.directory_url
     %td
+      = urls.posted_on
     %td
+      = urls.submitted_on

@@ -8,7 +8,7 @@
         %th Posted [30 days]
         %th Visible [30 days]
     %tbody
-      - if @client_urls.present?
+      - if @client_reviews_by_id.present?
         = render partial: 'clients/review_listing'
       - else
         = render partial: 'clients/no_review_found'

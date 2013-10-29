@@ -86,12 +86,21 @@ class ClientsController < ApplicationController
   def load_reviews
     client_data = Client.find(params[:client_id])
     @client_business_name = client_data.business_name
-    @client_reviews = Review.find_by_client_id(params[:client_id])
-    @client_urls = ClientUrl.find_all_by_client_id(params[:client_id])
-
-    #data = ClientUrl.joins(:review)
-    #logger.debug "***************#{data.inspect}"
-
+    #@client_reviews_by_id = Review.joins(:ClientUrls).joins('WHERE reviews.client_id =', params[:client_id])
+    connection = ActiveRecord::Base.connection
+    result = ActiveRecord::Base.connection.execute("select r.*, cu.* from reviews r left join client_urls cu on r.client_id = cu.client_id where r.client_id = #{params[:client_id]}")
+    @client_reviews_by_id = Array.new
+    result.each do |row|
+      obj = ReviewClientUrl.new
+      obj.directory_url = row['directory_url']
+      obj.posted_on = row['posted_on']
+      obj.submitted_on = row['submitted_on']
+      @client_reviews_by_id << obj
+    end
+    # @client_reviews_by_id = Review.find :all,
+    #                         :select => 'reviews.*, client_urls.*',
+    #                         :joins => 'LEFT JOIN client_urls ON reviews.client_id = client_urls.client_id',
+    #                         :conditions => 'reviews.client_id' => params[:client_id]
      respond_to { |format|
         format.js {
           render file: 'clients/load_reviews'
