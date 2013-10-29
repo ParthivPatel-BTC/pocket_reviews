@@ -44,7 +44,7 @@
                 %i.icon-remove
             - if active
               %td
-                = link_to(client_deactive_path(client), method: :put, data: { confirm: 'Are you sure?' }, title: 'De-activate') do
+                = link_to(client_deactive_path(client), method: :put, data: { confirm: 'Are you sure?' }, title: 'De-Activate') do
                   %i.icon-pause
             - unless active
               %td

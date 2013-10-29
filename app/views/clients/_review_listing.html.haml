@@ -3,6 +3,6 @@
     %td
       = urls.directory_url
     %td
-      = urls.posted_on
+      = Date.parse(urls.posted_on).strftime("%d %b %y")
     %td
-      = urls.submitted_on
+      = Date.parse(urls.submitted_on).strftime("%d %b %y")

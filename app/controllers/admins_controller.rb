@@ -4,7 +4,7 @@ class AdminsController < ApplicationController
   end
 
   def manage_passwords
-    @clients_passwords = User.order("username").page(params[:page]).per(5)
+    @clients_passwords = User.order("username").where("id != ?", current_user.id).page(params[:page]).per(5)
   end
 
   def reset_password

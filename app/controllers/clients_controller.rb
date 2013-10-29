@@ -26,7 +26,7 @@ class ClientsController < ApplicationController
   end
 
   def index
-    @clients = Client.order("business_name").page(params[:page]).per(2)
+    @clients = Client.order("business_name").page(params[:page]).per(5)
   end
 
   def edit
