@@ -1,8 +1,18 @@
 class ClientsController < ApplicationController
 
+  def index
+    @clients = Client.order("business_name").page(params[:page]).per(5)
+    if !@clients.present?
+      redirect_to admins_path
+    end
+  end
+
   def dashboard
     client_user_record = User.find(current_user.id)
     @client = Client.find_by_email_address(client_user_record.email)
+  end
+
+  def review_invitation
   end
 
   def new
@@ -19,14 +29,10 @@ class ClientsController < ApplicationController
       user_id_for_role = User.find_by_email(@client.email_address)
       UserRole.create(:user_id => user_id_for_role.id, :role_id => '2')
       flash[:notice] = "Record inserted successfully"
-      redirect_to :clients
+      redirect_to :admins
     else
       render :new
     end
-  end
-
-  def index
-    @clients = Client.order("business_name").page(params[:page]).per(5)
   end
 
   def edit
@@ -107,6 +113,10 @@ class ClientsController < ApplicationController
         }
       }
   end
+
+  def feedback
+  end
+
 end
 
 private

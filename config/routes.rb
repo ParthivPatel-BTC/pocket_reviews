@@ -9,6 +9,7 @@ PocketReview::Application.routes.draw do
     collection do
       post :reset_password
       post :load_reviews
+      get :feedback
     end
   end
 
@@ -40,6 +41,8 @@ PocketReview::Application.routes.draw do
 
   get '/dashboard' => 'clients#dashboard', as: :client_dashboard
   get '/manage_clients' => 'clients#index', as: :manage_clients
+  put '/send_review_invitation' => 'clients#review_invitation', as: :review_invitation
+
 
   #devise_scope :user do
   #  get "/login" => "devise/sessions#new"

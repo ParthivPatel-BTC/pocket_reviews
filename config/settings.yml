@@ -1,3 +1,6 @@
 app_name: "Review Rocket"
 
 default_password: 'pleasechangeme!'
+bitly:
+  login: <%= ENV['BITLY_LOGIN'] %>
+  api_key: <%= ENV['BITLY_API_KEY'] %>

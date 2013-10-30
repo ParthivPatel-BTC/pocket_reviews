@@ -1,0 +1,14 @@
+.container
+  .center.hero-uni
+    %h1.form-signin-heading Feedback
+    -flash.each do |name, msg|
+      .alert.error_msg.pull-right
+        = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
+        =label_tag msg
+    .box_signup
+      = form_tag(load_reviews_clients_path, method: :post, remote: true) do |f|
+        = label_tag 'customer[name]', 'Full Name', class: 'pull-left'
+        = text_field_tag 'customer[name]', nil, placeholder: "Full Name", autofocus: true
+        = label_tag 'comment', 'Comment On Your Experience', class: 'pull-left'
+        = text_area_tag 'client[comment]', nil, placeholder: "Comment"
+        = submit_tag "Submit", class: "btn btn-primary pull-left"

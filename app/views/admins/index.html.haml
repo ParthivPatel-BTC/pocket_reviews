@@ -1,5 +1,6 @@
 .container
   .span10offset1.center.hero-uni
+  -if @clients.present?
     -flash.each do |name, msg|
       .alert.alert-success
         = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
@@ -14,5 +15,7 @@
               = select_tag :client_id, options_from_collection_for_select(@clients, 'id', 'business_name', @selected_client_id)
             %td
               = submit_tag "Load Reviews", class: "btn btn-primary", id: "load_review", type: "submit"
-
-  .load_reviews
+    .load_reviews
+  -else
+    .span12
+      %h3 No active clients found.Click #{link_to 'here', new_client_path} to add one or #{link_to 'here', manage_clients_path} to activate, if any.

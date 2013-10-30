@@ -35,7 +35,7 @@
             %td
               = active_text
             %td
-              = client.created_at.strftime("%d %b %y")
+              = client.created_at.strftime("%B %e, %Y")
             %td
               = link_to(edit_client_path(client), title: 'Edit') do
                 %i.icon-edit

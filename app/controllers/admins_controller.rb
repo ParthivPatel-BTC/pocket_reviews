@@ -1,6 +1,6 @@
 class AdminsController < ApplicationController
   def index
-    @clients = Client.all
+    @clients = Client.order("business_name").where('active = true').all
   end
 
   def manage_passwords
