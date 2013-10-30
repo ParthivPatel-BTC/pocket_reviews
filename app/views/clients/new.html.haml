@@ -1,6 +1,8 @@
 = provide(:title, "New Client")
 .container
-  %h2.form-signin-heading Create Client
+  %h4.pull-left Create Client
+  %br/
+  %br/
   = render "clients/error_new_messages"
   = form_for @client do |f|
     = f.hidden_field :active, value: "true"

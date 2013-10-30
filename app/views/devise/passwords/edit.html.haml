@@ -1,7 +1,7 @@
-.container.pull-left
-  .center.hero-uni
+.container
+  .pull-left
     %h4 Change Your Password
-    .offset3.span6.box
+    .box
       = form_for @user, :url => update_password_path, :html => { :method => :post } do |f|
         = hidden_field_tag 'id', @user.id
         -flash.each do |name, msg|

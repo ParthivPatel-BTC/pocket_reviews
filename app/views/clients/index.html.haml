@@ -1,7 +1,9 @@
 .center.hero-uni
   .container
     .span10offset1
-    %h4.pull Clients
+    %h4.pull-left Clients
+    %br/
+    %br/
     -flash.each do |name, msg|
       .alert.alert-success
         = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}

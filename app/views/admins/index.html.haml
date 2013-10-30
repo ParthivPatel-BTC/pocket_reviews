@@ -1,10 +1,5 @@
 .container
-  .span10offset1.center.hero-uni
   -if @clients.present?
-    -flash.each do |name, msg|
-      .alert.alert-success
-        = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
-        = label_tag msg
     = form_tag(load_reviews_clients_path, method: :post, remote: true) do |f|
       .container
         %table

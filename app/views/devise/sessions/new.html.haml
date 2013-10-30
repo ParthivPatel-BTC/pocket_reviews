@@ -2,13 +2,13 @@
   .center.hero-uni
     %h1.form-signin-heading Sign In
     -flash.each do |name, msg|
-      .alert.error_msg.pull-right
+      .offset4.text-center.span4.alert
         = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
         =label_tag msg
     .box_signup
       = form_for resource, :as => resource_name, :url => user_session_path do |f|
         = f.label :email, class: "pull-left"
-        = f.email_field :email, :autofocus => true
+        = f.email_field :email, placeholder: "Email", :autofocus => true
         = f.label :password, class: "pull-left"
         = f.password_field :password
         -if devise_mapping.rememberable?
