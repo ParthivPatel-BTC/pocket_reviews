@@ -20,6 +20,10 @@ $(document).ready(function(){
       });
     });
 
+   $('#client_company_logo').change(function() {
+      readURL($(this)[0], '#preview_logo');
+   });
+
   /*$("#load_review").click(function() {
     var id = $('#client_id').val();
     alert(id);
@@ -40,4 +44,19 @@ function removeUrl(dom) {
   $(dom).siblings('input:text').remove();  //Remove Text Field
   $(dom).siblings('input:checkbox').attr("checked", 'checked'); //Apply for checked
   $(dom).closest('img').remove(); //Remove x Image
+}
+
+function readURL(input, previewContainerSelector) {
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+          $(previewContainerSelector)
+              .attr('src', e.target.result)
+              .width(250)
+              .height(150);
+      };
+
+      reader.readAsDataURL(input.files[0]);
+  }
 }
