@@ -25,3 +25,8 @@
                   = link_to("Change Password", reset_password_admins_path)
                 %li
                   = link_to("Logout", destroy_user_session_path, :method => :delete)
+      - else
+        .nav-collapse.collapse.navbar-inverse-collapse
+          %ul.nav.pull-right
+            %li
+              = link_to "Sign In", new_user_session_path
