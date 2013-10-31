@@ -13,10 +13,6 @@ class Client < ActiveRecord::Base
 
   has_attached_file :company_logo, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 
-  validates :company_logo, allow_blank: true, format: {
-            with: %r{\.gif|jpg|png}i,
-            message: 'must be in gif, jpg or png format.'
-  }
   #validates :client_urls_attributes, format: {with: /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix,
     #message: "invalid client url"}, unless: "client_urls_attributes.blank?"
 
