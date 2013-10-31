@@ -33,6 +33,7 @@ gem 'bcrypt-ruby', '3.0.1'
 gem "paperclip", '~> 3.0'
 gem "devise", "3.1.1"
 gem "bitly", "~> 0.9.0"
+gem 'cocaine'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
