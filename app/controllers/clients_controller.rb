@@ -82,11 +82,11 @@ class ClientsController < ApplicationController
   end
 
   def active
-    update_client_status_and_redirect(:activate)
+    update_client_status_and_redirect(:activated)
   end
 
   def deactive
-    update_client_status_and_redirect(:deactive)
+    update_client_status_and_redirect(:deactivated)
   end
 
   def load_reviews
@@ -124,15 +124,15 @@ private
 def update_client_status_and_redirect(client_status)
   @client = Client.find(params[:id])
 
-  if client_status == :deactive
+  if client_status == :deactivated
     new_status = false
 
-  elsif client_status == :activate
+  elsif client_status == :activated
     new_status = true
   end
 
   if @client.update_attribute(:active, new_status)
-    flash[:notice] = "Record updates successfully"
+    flash[:notice] = "#{client_status} successfully"
     redirect_to :clients
   end
 end
