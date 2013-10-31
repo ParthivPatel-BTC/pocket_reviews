@@ -1,10 +1,6 @@
 .center.hero-uni
   .container
     %h1.form-signin-heading Dashboard
-    -flash.each do |name, msg|
-      .alert.alert-success
-        = link_to '×', '', class: "close", :data => {"dismiss" => "alert"}
-        =label_tag msg
     = form_for @client,:url => review_invitation_path do |u|
       .span10offset1
         .span12

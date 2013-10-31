@@ -10,6 +10,7 @@ PocketReview::Application.routes.draw do
       post :reset_password
       post :load_reviews
       get :feedback
+      get :change_current_client_password
     end
   end
 
@@ -22,7 +23,9 @@ PocketReview::Application.routes.draw do
   devise_for :users
   match "users/index", to: 'users#index', via: "get"
   post "clients/update_password" => 'clients#update_password', as: :update_password
+  post "clients/update_current_client_password" => 'clients#update_current_client_password', as: :update_current_client_password
   get "clients/reset_password" => 'clients#reset_password', as: :reset_password
+  #get "clients/change_password" => 'clients#change_current_user_password', as: :change_password
   post "admins/update" => 'admins#update', as: :update
 
   resources :users do

@@ -50,10 +50,28 @@ class ClientsController < ApplicationController
     end
   end
 
+  def change_current_client_password
+    @user = User.find_by_id(current_user.id)
+  end
+
   def reset_password
     @user = User.find(params[:id])
     render template: "devise/passwords/edit"
   end
+
+def update_current_client_password
+  @user = User.find(params[:id])
+      chk_both_password = check_both_password?(params[:user][:password], params[:user][:password_confirmation])
+      if chk_both_password.first
+        @user.update_attribute(:password, params[:user][:password])
+        flash[:notice] = 'Password changed successfully.'
+        redirect_to :manage_passwords_admins
+      else
+        flash[:notice] = chk_both_password.last
+        render :change_current_client_password
+      end
+end
+
 
   def update_password
       @user = User.find(params[:id])
