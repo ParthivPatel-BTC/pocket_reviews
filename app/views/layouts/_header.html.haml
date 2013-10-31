@@ -5,7 +5,10 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to "Pocket Review", nil, class: "brand", id: "logo"
+      -if !is_user?
+        = link_to "Pocket Review", admins_path, class: "brand", id: "logo"
+      -else
+        = link_to "Pocket Review", client_dashboard_path, class: "brand", id: "logo"
       - if is_current_user?
         .nav-collapse.collapse.navbar-inverse-collapse
           %ul.nav.pull-right
