@@ -45,6 +45,7 @@ PocketReview::Application.routes.draw do
   get '/dashboard' => 'clients#dashboard', as: :client_dashboard
   get '/manage_clients' => 'clients#index', as: :manage_clients
   put '/send_review_invitation' => 'clients#review_invitation', as: :review_invitation
+  #match "/" => "home#admin", :constraints => {:subdomain => "admin"}
 
 
   #devise_scope :user do
