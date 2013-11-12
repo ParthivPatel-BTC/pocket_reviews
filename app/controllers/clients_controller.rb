@@ -108,17 +108,20 @@ end
   end
 
   def load_reviews
+    @posted_reviews = Review.count_posted_reviews
+    @visible_reviews = ReviewStatus.count_visible_review
+
+
     client_data = Client.find(params[:client_id])
     @client_business_name = client_data.business_name
     #@client_reviews_by_id = Review.joins(:ClientUrls).joins('WHERE reviews.client_id =', params[:client_id])
     connection = ActiveRecord::Base.connection
-    result = ActiveRecord::Base.connection.execute("select r.*, cu.* from reviews r left join client_urls cu on r.client_id = cu.client_id where r.client_id = #{params[:client_id]}")
+    result = ActiveRecord::Base.connection.execute("select c.*, cu.* from clients c left join client_urls cu on c.id = cu.client_id")
+
     @client_reviews_by_id = Array.new
     result.each do |row|
       obj = ReviewClientUrl.new
       obj.directory_url = row['directory_url']
-      obj.posted_on = row['posted_on']
-      obj.submitted_on = row['submitted_on']
       @client_reviews_by_id << obj
     end
     # @client_reviews_by_id = Review.find :all,

@@ -16,8 +16,9 @@ class Client < ActiveRecord::Base
             with: %r{\.gif|jpg|png|jpeg}i,
             message: 'must be in gif, jpg, jpeg or png format.'
   }
+
   #validates :client_urls_attributes, format: {with: /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix,
-    #message: "invalid client url"}, unless: "client_urls_attributes.blank?"
+  #          message: "invalid client url"}, unless: "client_urls_attributes.blank?"
 
   belongs_to :user
   has_many :reviews, dependent: :destroy
@@ -25,4 +26,10 @@ class Client < ActiveRecord::Base
 
   has_many :client_urls, dependent: :destroy
   accepts_nested_attributes_for :client_urls, :allow_destroy => true
+
+=begin
+  def self.get_client_and_client_urls
+    Clients.includes(:client_urls).where('created_at >= ?', Time.now-30.days).count
+  end
+=end
 end

@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(:version => 20131024055905) do
 
   add_index "clients", ["user_id"], :name => "index_clients_on_user_id"
 
+  create_table "review_statuses", :force => true do |t|
+    t.boolean  "is_posted",     :default => false
+    t.datetime "posted_on"
+    t.boolean  "is_visible",    :default => false
+    t.datetime "visible_on"
+    t.integer  "client_url_id"
+    t.integer  "review_id"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
   create_table "reviews", :force => true do |t|
     t.text     "comment"
     t.integer  "rating"

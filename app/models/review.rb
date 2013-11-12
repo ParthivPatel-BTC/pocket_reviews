@@ -7,4 +7,8 @@ class Review < ActiveRecord::Base
   belongs_to :customer
 
   has_many :review_statuses
+
+  def self.count_posted_reviews
+    where('created_at >= ?', Time.now-30.days).count
+  end
 end
